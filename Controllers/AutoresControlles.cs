@@ -25,5 +25,11 @@ public class AutoresController : ControllerBase
         var novoAutor = _autorService.Add(autor);
         return CreatedAtAction(nameof(GetById), new{id = novoAutor.Id}, novoAutor);
     }
+
+    [HttpDelete("{id}")]
+    public ActionResult<Autor>Remove(int id){
+        var autor = _autorService.Remove(id);
+        return autor is null? NotFound() : Ok(autor);
+    }
         
 }

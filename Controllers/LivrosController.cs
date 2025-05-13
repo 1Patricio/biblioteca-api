@@ -24,4 +24,10 @@ public class LivrosController : ControllerBase{
         var novoLivro = _livroService.Add(livro);
         return CreatedAtAction(nameof(GetById), new {id = novoLivro.Id}, novoLivro);
     }
+
+    [HttpDelete("{id}")]
+    public ActionResult<Livro>Remove(int id){
+        var livro = _livroService.Remove(id);
+        return livro is null? NotFound() : Ok(livro);
+    }
 }

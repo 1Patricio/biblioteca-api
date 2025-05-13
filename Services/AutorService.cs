@@ -9,4 +9,11 @@ public class AutorService : IAutorService{
         _autores.Add(autor);
         return autor;
     }
+    public Autor? Remove(int id) {
+        var autor = _autores.FirstOrDefault(l => l.Id == id);
+        if (autor != null) {
+            _autores.Remove(autor);
+        }
+        return autor;
+    }
 }

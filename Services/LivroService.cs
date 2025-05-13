@@ -9,4 +9,12 @@ public class LivroService : ILivroService{
         _livros.Add(livro);
         return livro;
     }
+
+    public Livro? Remove(int id) {
+        var livro = _livros.FirstOrDefault(l => l.Id == id);
+        if (livro != null) {
+            _livros.Remove(livro);
+        }
+        return livro;
+    }
 }
