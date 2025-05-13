@@ -26,8 +26,14 @@ public class LivrosController : ControllerBase{
     }
 
     [HttpDelete("{id}")]
-    public ActionResult<Livro>Remove(int id){
+    public ActionResult Remove(int id){
         var livro = _livroService.Remove(id);
-        return livro is null? NotFound() : Ok(livro);
+        return livro ? NoContent() : NotFound();
+    }
+
+    [HttpPut("{id}")]
+    public ActionResult Update(int id, Livro livroAtualizado){
+        var atualizado = _livroService.Update(id, livroAtualizado);
+        return atualizado is null ? NotFound() : NoContent();
     }
 }

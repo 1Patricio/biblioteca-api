@@ -10,11 +10,22 @@ public class LivroService : ILivroService{
         return livro;
     }
 
-    public Livro? Remove(int id) {
-        var livro = _livros.FirstOrDefault(l => l.Id == id);
-        if (livro != null) {
-            _livros.Remove(livro);
-        }
-        return livro;
+    public Livro? Update(int id, Livro livroAtualizado){
+        Livro livro1 = null;
+            for (int i = 0; i < _livros.Count; i++)
+            {
+                if(_livros[i].Id == id){
+                    _livros[i] = livroAtualizado;
+                    return _livros[i];
+                }
+            }
+        return livro1;
+    }
+
+    public bool Remove(int id) {
+        var livro = GetById(id);
+        if (livro is null)
+            return false;
+        return _livros.Remove(livro);
     }
 }
